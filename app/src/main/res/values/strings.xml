@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">UsersDB</string>
+    <string name="full_name">Фамилия Имя Отчество</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="log_in">Войти</string>
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+</resources>
