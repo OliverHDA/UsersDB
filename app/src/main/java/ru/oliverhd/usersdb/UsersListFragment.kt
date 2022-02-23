@@ -43,13 +43,27 @@ class UsersListFragment : Fragment() {
     }
 
     private fun initRecycler(data: List<User>) {
-        adapter = UsersListRVAdapter(data)
+        adapter = UsersListRVAdapter(object : UsersListRVAdapter.OnRecyclerItemClickListener {
+            override fun onItemClick() {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragmentContainer, UserDetailFragment.newInstance())
+                    ?.addToBackStack("")
+                    ?.commit()
+            }
+
+            override fun onItemRemoveClick(position: Int) {
+                adapter.remove(position)
+            }
+
+        })
+        adapter.setData(data)
         binding.usersRecycler.adapter = adapter
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        adapter.removeListener()
     }
 
     companion object {

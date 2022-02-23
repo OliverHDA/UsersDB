@@ -24,4 +24,8 @@ class UserDetailFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    companion object {
+        fun newInstance(): UserDetailFragment = UserDetailFragment()
+    }
 }
