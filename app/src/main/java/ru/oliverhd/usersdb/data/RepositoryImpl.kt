@@ -1,11 +1,32 @@
 package ru.oliverhd.usersdb.data
 
-class RepositoryImpl : Repository {
+class RepositoryImpl(private val usersDB: UsersDao) : Repository {
+
     override fun getUsersList(): List<User> {
-        return getDefaultUsersList()
+        return usersDB.getAllUsers()
     }
 
     override fun getUserById(userId: Int): User? {
+        return usersDB.getUserById(userId)
+    }
+
+    override fun addUser(user: User) {
+        usersDB.retain(user)
+    }
+
+    override fun removeUser(userId: Int) {
+        usersDB.remove(userId)
+    }
+
+    override fun changeUser(user: User) {
+        usersDB.updateUser(user)
+    }
+
+    override fun getNotPersistedUsersList(): List<User> {
+        return getDefaultUsersList()
+    }
+
+    override fun getNotPersistedUserById(userId: Int): User {
         return getDefaultUser()
     }
 

@@ -41,7 +41,7 @@ class UsersListRVAdapter(
     inner class UserListViewHolder(private val binding: ItemUsersListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User, position: Int) {
-            binding.root.setOnClickListener { onItemClickListener?.onItemClick() }
+            binding.root.setOnClickListener { onItemClickListener?.onItemClick(user.id) }
             val fullName = "${user.name} ${user.surname.orEmpty()} ${user.patronymic.orEmpty()}"
             binding.userName.text = fullName
             binding.userPhoneNumber.text = user.phone
@@ -49,12 +49,8 @@ class UsersListRVAdapter(
         }
     }
 
-    fun removeListener() {
-        onItemClickListener = null
-    }
-
     interface OnRecyclerItemClickListener {
-        fun onItemClick()
+        fun onItemClick(userId: Int)
         fun onItemRemoveClick(position: Int)
     }
 }
