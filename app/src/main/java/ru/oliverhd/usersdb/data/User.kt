@@ -1,4 +1,4 @@
-package ru.oliverhd.usersdb
+package ru.oliverhd.usersdb.data
 
 data class User(
     val id: Int,

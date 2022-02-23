@@ -1,4 +1,4 @@
-package ru.oliverhd.usersdb
+package ru.oliverhd.usersdb.data
 
 interface Repository {
     fun getUsersList(): List<User>

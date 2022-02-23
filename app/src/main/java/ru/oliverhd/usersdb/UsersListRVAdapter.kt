@@ -3,6 +3,7 @@ package ru.oliverhd.usersdb
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.oliverhd.usersdb.data.User
 import ru.oliverhd.usersdb.databinding.ItemUsersListBinding
 
 class UsersListRVAdapter(private val data: List<User>) :

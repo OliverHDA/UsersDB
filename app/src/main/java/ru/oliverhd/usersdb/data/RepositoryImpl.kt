@@ -1,4 +1,4 @@
-package ru.oliverhd.usersdb
+package ru.oliverhd.usersdb.data
 
 class RepositoryImpl : Repository {
     override fun getUsersList(): List<User> {
@@ -7,7 +7,7 @@ class RepositoryImpl : Repository {
 
     private fun getDefaultUsersList(): List<User> {
         val usersList = mutableListOf<User>()
-        for (i in 1..10) {
+        for (i in 1..100) {
             usersList.add(
                 User(
                     i,
