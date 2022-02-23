@@ -5,4 +5,11 @@
     <string name="log_in">Войти</string>
     <string name="password">Пароль</string>
     <string name="login">Логин</string>
+    <string name="user_information">Информация о пользователе</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="patronymic">Отчество</string>
+    <string name="birthdate">Дата рождения</string>
+    <string name="email">Электронная почта</string>
+    <string name="save">Сохранить</string>
 </resources>

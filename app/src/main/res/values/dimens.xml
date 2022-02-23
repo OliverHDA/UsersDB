@@ -8,4 +8,5 @@
     <dimen name="stroke_width">1dp</dimen>
     <dimen name="big_margin">42dp</dimen>
     <dimen name="auth_element_width">300dp</dimen>
+    <dimen name="user_information_title_text_size">20sp</dimen>
 </resources>

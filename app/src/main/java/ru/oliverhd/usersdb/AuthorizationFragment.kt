@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.oliverhd.usersdb.databinding.FragmentAuthorizationBinding
+import ru.oliverhd.usersdb.userslist.UsersListFragment
 
 class AuthorizationFragment : Fragment() {
 

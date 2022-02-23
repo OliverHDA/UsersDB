@@ -5,6 +5,10 @@ class RepositoryImpl : Repository {
         return getDefaultUsersList()
     }
 
+    override fun getUserById(userId: Int): User? {
+        return getDefaultUser()
+    }
+
     private fun getDefaultUsersList(): List<User> {
         val usersList = mutableListOf<User>()
         for (i in 1..100) {
@@ -22,5 +26,18 @@ class RepositoryImpl : Repository {
             )
         }
         return usersList
+    }
+
+    private fun getDefaultUser(): User {
+        return User(
+            1,
+            "Иван",
+            "Иванов",
+            "Иванович",
+            "15.07.1985",
+            "ivan@gmail.com",
+            "+7(777)777-77-77",
+            null
+        )
     }
 }

@@ -1,4 +1,4 @@
-package ru.oliverhd.usersdb
+package ru.oliverhd.usersdb.userslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

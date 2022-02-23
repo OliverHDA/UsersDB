@@ -10,3 +10,16 @@ data class User(
     val phone: String,
     val photo: String?
 )
+
+fun getEmptyUser(): User {
+    return User(
+        0,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
+}

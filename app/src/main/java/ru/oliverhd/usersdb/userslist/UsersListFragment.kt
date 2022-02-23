@@ -1,4 +1,4 @@
-package ru.oliverhd.usersdb
+package ru.oliverhd.usersdb.userslist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import ru.oliverhd.usersdb.AppState
+import ru.oliverhd.usersdb.R
 import ru.oliverhd.usersdb.data.User
 import ru.oliverhd.usersdb.databinding.FragmentUsersListBinding
+import ru.oliverhd.usersdb.userdetail.UserDetailFragment
 
 class UsersListFragment : Fragment() {
 
@@ -29,16 +32,23 @@ class UsersListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-
+        initFab()
     }
 
     private fun renderData(state: AppState) {
         when (state) {
-            is AppState.Loading -> binding.usersListLoadingLayout.loadingLayout.visibility =
-                View.VISIBLE
-            is AppState.Success<*> -> initRecycler(state.data as List<User>)
-            is AppState.Error -> Toast.makeText(context, state.error.message, Toast.LENGTH_SHORT)
-                .show()
+            is AppState.Loading -> {
+                binding.usersListLoadingLayout.loadingLayout.visibility = View.VISIBLE
+            }
+            is AppState.Success<*> -> {
+                binding.usersListLoadingLayout.loadingLayout.visibility = View.GONE
+                initRecycler(state.data as List<User>)
+            }
+            is AppState.Error -> {
+                binding.usersListLoadingLayout.loadingLayout.visibility = View.GONE
+                Toast.makeText(context, state.error.message, Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
@@ -46,7 +56,7 @@ class UsersListFragment : Fragment() {
         adapter = UsersListRVAdapter(object : UsersListRVAdapter.OnRecyclerItemClickListener {
             override fun onItemClick() {
                 activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragmentContainer, UserDetailFragment.newInstance())
+                    ?.replace(R.id.fragmentContainer, UserDetailFragment.newInstance(1))
                     ?.addToBackStack("")
                     ?.commit()
             }
@@ -58,6 +68,15 @@ class UsersListFragment : Fragment() {
         })
         adapter.setData(data)
         binding.usersRecycler.adapter = adapter
+    }
+
+    private fun initFab() {
+        binding.addUserFAB.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, UserDetailFragment.newInstance(null))
+                ?.addToBackStack("")
+                ?.commit()
+        }
     }
 
     override fun onDestroy() {
